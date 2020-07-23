@@ -1,0 +1,17 @@
+.person-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.person-list .person {
+    background-color: rgba(167, 85, 85, 0.74);
+    display: block;
+    margin: auto;
+    margin-top: 1.5%;
+    width: 30%;
+    height: 10vh;
+    box-shadow: 3px 3px 3px rgba(160, 140, 113, 0.9);
+
+    color: white;
+    font-weight: bolder;
+}
