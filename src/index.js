@@ -10,12 +10,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import personListReducer from "./store/reducer/personList";
 import userReducer from "./store/reducer/user";
 
+import { saveData, loadData } from "./store/storeService";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   personList: personListReducer,
   user: userReducer,
 });
+
+const persisState = loadData();
 
 const logger1 = (store) => {
   return (next) => {
@@ -36,8 +40,13 @@ const logger2 = (store) => (next) => (action) => {
 
 const store = createStore(
   rootReducer,
+  persisState,
   composeEnhancers(applyMiddleware(thunk))
 );
+
+store.subscribe(() => {
+  saveData(store.getState());
+});
 
 ReactDOM.render(
   <Provider store={store}>
