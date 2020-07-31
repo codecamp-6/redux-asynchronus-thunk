@@ -1,4 +1,4 @@
-import ActionTypes from "./actionType";
+import ActionTypes from "../action/actionType";
 
 const initialState = {
   personList: [],
@@ -7,11 +7,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_PERSON:
-      console.log("pass here in reducer");
       return {
         ...state,
-        personList: [...state.personList, action.payload],
+        personList: action.data,
       };
+
+    case ActionTypes.GET_PEOPLE:
+      return {
+        ...state,
+        personList: action.data,
+      };
+
     case ActionTypes.EDIT_PERSON:
       const newPersonList = state.personList.map((person) =>
         person.id === action.id ? action.payload : person

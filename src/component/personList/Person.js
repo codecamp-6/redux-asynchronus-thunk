@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
-import ActionTypes from "../../store/actionType";
+import ActionTypes from "../../store/action/actionType";
 
 function Person(props) {
   const [index, setIndex] = useState(0);

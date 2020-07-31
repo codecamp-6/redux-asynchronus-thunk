@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Person from "./personList/Person";
+import { actionCreators } from "../store/action/actionCreators";
 
 function PersonList(props) {
+  useEffect(() => {
+    props.getPeople();
+  }, []);
   return (
     <div className="person-list">
       {props.personList.map((person) => (
@@ -19,8 +23,15 @@ function PersonList(props) {
 
 const mapStateToProps = (state) => {
   return {
+    statusUser: state.user.status,
     personList: state.personList.personList,
   };
 };
 
-export default connect(mapStateToProps, null)(PersonList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPeople: () => dispatch(actionCreators.getPeople()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonList);
