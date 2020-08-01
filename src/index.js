@@ -37,7 +37,7 @@ const logger2 = (store) => (next) => (action) => {
   next(action);
   console.log("[after next in middleware 2]");
 };
-console.log("hello");
+console.log("hellodd");
 const store = createStore(
   rootReducer,
   persisState,
